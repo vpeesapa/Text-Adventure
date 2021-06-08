@@ -32,6 +32,7 @@ def renderText(surface,font,message,color,position):
     textRect.center = position
     surface.blit(text,textRect)
 
+# Function that renders a button
 def button(msg,x,y,w,h,ic,ac,mouse):
     if x < mouse[0] < x + w and y < mouse[1] < y + h:
         pygame.draw.rect(window,ac,(x,y,w,h))
@@ -141,6 +142,46 @@ def confirmName():
     return False
 
 enterName()
+
+lines = [
+    "This is a story from a long, long time ago...",
+    "A time where nothing and everything existed at the same time."
+]
+
+first_time = True
+
+window.fill(Colors["black"])
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            # If the user voluntarily closes the window
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_RETURN] and not first_time:
+        # Breaks from the loop after displaying everything on the screen
+        break
+
+    if first_time:
+        for i in range(len(lines)):
+            for j in range(len(lines[i])):
+                text = secondary_font.render(lines[i][j],1,Colors["white"])
+                window.blit(text,(50 + (secondary_font.size(lines[i][:j])[0]),50 * (i + 1)))
+                pygame.display.update()
+                clock.tick(25)
+
+        first_time = False
+    else:
+        text = secondary_font.render("Press \'Enter\' to continue",1,Colors["white"])
+        window.blit(text,(window_width / 2 + 100,window_height - 50))
+
+    pygame.display.update()
+    clock.tick(60)
 
 # Stops the game engine after the user has completed the story
 pygame.quit()
