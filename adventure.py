@@ -33,13 +33,23 @@ def renderText(surface,font,message,color,position):
     surface.blit(text,textRect)
 
 # Function that renders a button
-def button(msg,x,y,w,h,ic,ac,mouse):
+def button(msg,x,y,w,h,ic,ac):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
     if x < mouse[0] < x + w and y < mouse[1] < y + h:
+        # If the cursor hovers over the button, it is made active by appropriately changing its colors
         pygame.draw.rect(window,ac,(x,y,w,h))
         renderText(window,primary_font,msg,ic,(x + (w / 2),y + (h / 2)))
+
+        if click[0]:
+            # If the button is clicked
+            return True
     else:
         pygame.draw.rect(window,ic,(x,y,w,h))
         renderText(window,primary_font,msg,ac,(x + (w / 2),y + (h / 2)))
+
+    return False
 
 # Function that displays the character naming screen
 def enterName():
@@ -98,9 +108,10 @@ def enterName():
 def confirmName():
     global is_typing,player_name
 
+    option1 = False
+    option2 = False
+
     while True:
-        mouse = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -118,22 +129,24 @@ def confirmName():
                     pygame.quit()
                     sys.exit()
 
-        if click[0]:
-            if window_width / 2 - 225 < mouse[0] < window_width / 2 - 75 and window_height / 2 < mouse[1] < window_height / 2 + 80:
-                return True
-            elif window_width / 2 + 100 < mouse[0] < window_width / 2 + 250 and window_height / 2 < mouse[1] < window_height / 2 + 80:
-                is_typing = True
-                player_name = ""
-                return False
+        if option1:
+            # If the player confirms their name
+            return True
+
+        if option2:
+            # If the player denies their name
+            is_typing = True
+            player_name = ""
+            return False
 
         window.fill(Colors["black"])
 
         text = "Is your name \'" + player_name + "\'?"
         renderText(window,primary_font,text,Colors["white"],(window_width / 2,window_height / 2 - 60))
 
-        button("[Y]es",window_width / 2 - 225,window_height / 2,150,80,Colors["black"],Colors["white"],mouse)
+        option1 = button("[Y]es",window_width / 2 - 225,window_height / 2,150,80,Colors["black"],Colors["white"])
 
-        button("[N]o",window_width / 2 + 100,window_height / 2,150,80,Colors["black"],Colors["white"],mouse)
+        option2 = button("[N]o",window_width / 2 + 100,window_height / 2,150,80,Colors["black"],Colors["white"])
 
         pygame.display.update()
 
@@ -143,6 +156,7 @@ def confirmName():
 
 enterName()
 
+# The lines that will be displayed
 lines = [
     "This is a story from a long, long time ago...",
     "A time where nothing and everything existed at the same time."
