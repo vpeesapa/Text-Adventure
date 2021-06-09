@@ -221,7 +221,6 @@ while True:
         break
 
     if first_time:
-        # for i in range(len(lines)):
         wrapText(window,lines,secondary_font,Colors["white"],50,50,700)
 
         first_time = False
