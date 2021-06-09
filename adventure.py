@@ -154,12 +154,51 @@ def confirmName():
 
     return False
 
+# Function that wraps and renders text if it goes beyond the allowed width
+def wrapText(screen,texts,font,color,x,y,allowed_width):
+
+    for text in texts:
+        # Split the text into words
+        words = text.split()
+
+        # Constructing lines out of these words
+        lines = []
+        while len(words) > 0:
+            line_words = []
+            while len(words) > 0:
+                line_words.append(words.pop(0))
+                font_width,font_height = font.size(" ".join(line_words + words[:1]))
+                if font_width > allowed_width:
+                    break
+
+            # Adding a line only consisting of those words
+            line = " ".join(line_words)
+            lines.append(line)
+
+        # Rendering the text with the typewriter effect
+        y_offset = 0
+        for line in lines:
+            font_width,font_height = font.size(line)
+
+            top = y + y_offset
+
+            for i in range(len(line)):
+                renderedText = font.render(line[i],1,color)
+                screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
+                pygame.display.update()
+                clock.tick(25)
+
+            y_offset += font_height
+
+        y = top + 75
+
 enterName()
 
 # The lines that will be displayed
 lines = [
-    "This is a story from a long, long time ago...",
-    "A time where nothing and everything existed at the same time."
+    "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure",
+    "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
+    "Simply adding a third sentence for testing."
 ]
 
 first_time = True
@@ -182,12 +221,8 @@ while True:
         break
 
     if first_time:
-        for i in range(len(lines)):
-            for j in range(len(lines[i])):
-                text = secondary_font.render(lines[i][j],1,Colors["white"])
-                window.blit(text,(50 + (secondary_font.size(lines[i][:j])[0]),50 * (i + 1)))
-                pygame.display.update()
-                clock.tick(25)
+        # for i in range(len(lines)):
+        wrapText(window,lines,secondary_font,Colors["white"],50,50,700)
 
         first_time = False
     else:
