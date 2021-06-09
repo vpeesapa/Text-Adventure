@@ -155,42 +155,41 @@ def confirmName():
     return False
 
 # Function that wraps and renders text if it goes beyond the allowed width
-def wrapText(screen,texts,font,color,x,y,allowed_width):
+def wrapText(screen,text,font,color,x,y,allowed_width):
 
-    for text in texts:
-        # Split the text into words
-        words = text.split()
+    # Split the text into words
+    words = text.split()
 
-        # Constructing lines out of these words
-        lines = []
+    # Constructing lines out of these words
+    lines = []
+    while len(words) > 0:
+        line_words = []
         while len(words) > 0:
-            line_words = []
-            while len(words) > 0:
-                line_words.append(words.pop(0))
-                font_width,font_height = font.size(" ".join(line_words + words[:1]))
-                if font_width > allowed_width:
-                    break
+            line_words.append(words.pop(0))
+            font_width,font_height = font.size(" ".join(line_words + words[:1]))
+            if font_width > allowed_width:
+                break
 
-            # Adding a line only consisting of those words
-            line = " ".join(line_words)
-            lines.append(line)
+        # Adding a line only consisting of those words
+        line = " ".join(line_words)
+        lines.append(line)
 
-        # Rendering the text with the typewriter effect
-        y_offset = 0
-        for line in lines:
-            font_width,font_height = font.size(line)
+    # Rendering the text with the typewriter effect
+    y_offset = 0
+    for line in lines:
+        font_width,font_height = font.size(line)
 
-            top = y + y_offset
+        top = y + y_offset
 
-            for i in range(len(line)):
-                renderedText = font.render(line[i],1,color)
-                screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
-                pygame.display.update()
-                clock.tick(25)
+        for i in range(len(line)):
+            renderedText = font.render(line[i],1,color)
+            screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
+            pygame.display.update()
+            clock.tick(25)
 
-            y_offset += font_height
+        y_offset += font_height
 
-        y = top + 75
+    return top
 
 enterName()
 
@@ -221,7 +220,12 @@ while True:
         break
 
     if first_time:
-        wrapText(window,lines,secondary_font,Colors["white"],50,50,700)
+        starting_y = 50
+
+        for line in lines:
+            top = wrapText(window,line,secondary_font,Colors["white"],50,starting_y,700)
+            # Adding a gap between two paragraphs for easier differentiation
+            starting_y = top + 60
 
         first_time = False
     else:
