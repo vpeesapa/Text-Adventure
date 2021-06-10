@@ -177,10 +177,9 @@ def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
 
     # Rendering the text with the typewriter effect
     y_offset = 0
+    top = y
     for line in lines:
         font_width,font_height = font.size(line)
-
-        top = y + y_offset
 
         for i in range(len(line)):
             renderedText = font.render(line[i],1,color)
@@ -189,6 +188,7 @@ def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
             clock.tick(text_speed)
 
         y_offset += font_height
+        top = y + y_offset
 
     return top
 
@@ -197,24 +197,28 @@ enterName()
 # The lines that will be displayed
 lines = [
     {
-        "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure",
+        "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure.",
         "font": secondary_font,
-        "text_speed": 25
+        "text_speed": 25,
+        "EOP": False
     },
     {
         "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
         "font": secondary_font,
-        "text_speed": 25
+        "text_speed": 25,
+        "EOP": True
     },
     {
-        "text": "Simply adding a third sentence for testing",
+        "text": "Simply adding a third sentence for testing.",
         "font": secondary_font,
-        "text_speed": 25
+        "text_speed": 25,
+        "EOP": False
     },
     {
         "text": "Testing out the italics and a different text speed to see if there is some change.",
         "font": special_font_italics,
-        "text_speed": 75
+        "text_speed": 75,
+        "EOP": True
     }
 ]
 
@@ -242,8 +246,12 @@ while True:
 
         for line in lines:
             top = wrapText(window,line["text"],line["font"],Colors["white"],50,starting_y,700,line["text_speed"])
-            # Adding a gap between two paragraphs for easier differentiation
-            starting_y = top + 60
+
+            if line["EOP"]:
+                # Adding a gap between two paragraphs for easier differentiation
+                starting_y = top + 50
+            else:
+                starting_y = top
 
         first_time = False
     else:
