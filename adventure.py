@@ -18,8 +18,9 @@ pygame.display.set_caption("Text Adventure")
 clock = pygame.time.Clock()
 
 # --Global variables--
-primary_font = pygame.font.Font(None,60)
-secondary_font = pygame.font.Font(None,30)
+primary_font = pygame.font.SysFont("ubuntu mono",40)
+secondary_font = pygame.font.SysFont("ubuntu mono",20)
+special_font_italics = pygame.font.SysFont("ubuntu mono",20,bold = False,italic = True)
 player_name = ""
 is_typing = True
 character_limit = 10
@@ -155,7 +156,7 @@ def confirmName():
     return False
 
 # Function that wraps and renders text if it goes beyond the allowed width
-def wrapText(screen,text,font,color,x,y,allowed_width):
+def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
 
     # Split the text into words
     words = text.split()
@@ -185,7 +186,7 @@ def wrapText(screen,text,font,color,x,y,allowed_width):
             renderedText = font.render(line[i],1,color)
             screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
             pygame.display.update()
-            clock.tick(25)
+            clock.tick(text_speed)
 
         y_offset += font_height
 
@@ -195,9 +196,26 @@ enterName()
 
 # The lines that will be displayed
 lines = [
-    "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure",
-    "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
-    "Simply adding a third sentence for testing."
+    {
+        "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure",
+        "font": secondary_font,
+        "text_speed": 25
+    },
+    {
+        "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
+        "font": secondary_font,
+        "text_speed": 25
+    },
+    {
+        "text": "Simply adding a third sentence for testing",
+        "font": secondary_font,
+        "text_speed": 25
+    },
+    {
+        "text": "Testing out the italics and a different text speed to see if there is some change.",
+        "font": special_font_italics,
+        "text_speed": 75
+    }
 ]
 
 first_time = True
@@ -223,7 +241,7 @@ while True:
         starting_y = 50
 
         for line in lines:
-            top = wrapText(window,line,secondary_font,Colors["white"],50,starting_y,700)
+            top = wrapText(window,line["text"],line["font"],Colors["white"],50,starting_y,700,line["text_speed"])
             # Adding a gap between two paragraphs for easier differentiation
             starting_y = top + 60
 
