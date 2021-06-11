@@ -25,6 +25,7 @@ player_name = ""
 is_typing = True
 character_limit = 10
 
+
 # --Functions--
 # Function that renders text based on the specifications provided
 def renderText(surface,font,message,color,position):
@@ -195,36 +196,68 @@ def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
 enterName()
 
 # The lines that will be displayed
-lines = [
-    {
-        "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure.",
-        "font": secondary_font,
-        "text_speed": 25,
-        "EOP": False
-    },
-    {
-        "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
-        "font": secondary_font,
-        "text_speed": 25,
-        "EOP": True
-    },
-    {
-        "text": "Simply adding a third sentence for testing.",
-        "font": secondary_font,
-        "text_speed": 25,
-        "EOP": False
-    },
-    {
-        "text": "Testing out the italics and a different text speed to see if there is some change.",
-        "font": special_font_italics,
-        "text_speed": 75,
-        "EOP": True
-    }
-]
+verse1 = {
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
+    "lines": [
+        {
+            "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Simply adding a third sentence for testing.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "Testing out the italics and a different text speed to see if there is some change.",
+            "option": False,
+            "font": special_font_italics,
+            "text_speed": 75,
+            "EOP": True
+        }
+    ]
+}
+
+verse2 = {
+    "bg-color": Colors["white"],
+    "font-color": Colors["black"],
+    "lines": [
+        {
+            "text": "This is the beginning of a new verse, which erases everything in the previous verse and renders the new text on a new screen.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Another line to see if everything works the way it does for the first verse.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        }
+    ]
+}
+
+verses = [verse1,verse2]
 
 first_time = True
+current_page = 0
+current_verse = verses[0]
 
-window.fill(Colors["black"])
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -238,14 +271,22 @@ while True:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_RETURN] and not first_time:
-        # Breaks from the loop after displaying everything on the screen
-        break
+        # Begins the next verse by clearing out everything on the screen
+        first_time = True
+        if current_page + 1 < len(verses):
+            current_page += 1
+            current_verse = verses[current_page]
+        else:
+            # If the end of the story is reached
+            break
 
     if first_time:
+        window.fill(current_verse["bg-color"])
+
         starting_y = 50
 
-        for line in lines:
-            top = wrapText(window,line["text"],line["font"],Colors["white"],50,starting_y,700,line["text_speed"])
+        for line in current_verse["lines"]:
+            top = wrapText(window,line["text"],line["font"],current_verse["font-color"],50,starting_y,700,line["text_speed"])
 
             if line["EOP"]:
                 # Adding a gap between two paragraphs for easier differentiation
@@ -255,7 +296,7 @@ while True:
 
         first_time = False
     else:
-        text = secondary_font.render("Press \'Enter\' to continue",1,Colors["white"])
+        text = secondary_font.render("Press \'Enter\' to continue",1,current_verse["font-color"])
         window.blit(text,(window_width / 2 + 100,window_height - 50))
 
     pygame.display.update()
