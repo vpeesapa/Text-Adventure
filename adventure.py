@@ -202,28 +202,24 @@ verse1 = {
     "lines": [
         {
             "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure.",
-            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
             "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
-            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
             "text": "Simply adding a third sentence for testing.",
-            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
             "text": "Testing out the italics and a different text speed to see if there is some change.",
-            "option": False,
             "font": special_font_italics,
             "text_speed": 75,
             "EOP": True
@@ -237,14 +233,18 @@ verse2 = {
     "lines": [
         {
             "text": "This is the beginning of a new verse, which erases everything in the previous verse and renders the new text on a new screen.",
-            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
             "text": "Another line to see if everything works the way it does for the first verse.",
-            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Checking if we can add the player's name (" + player_name + ") seamlessly to the narrative.",
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
