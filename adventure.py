@@ -181,12 +181,33 @@ def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
     top = y
     for line in lines:
         font_width,font_height = font.size(line)
+        key_press = False
 
         for i in range(len(line)):
-            renderedText = font.render(line[i],1,color)
-            screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
-            pygame.display.update()
-            clock.tick(text_speed)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    # If the user voluntarily closes the window
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+                    else:
+                        key_press = True
+
+            if key_press:
+                # Renders the whole line if a key is pressed to speed up the process
+                renderedText = font.render(line,1,color)
+                screen.blit(renderedText,(x,top))
+                pygame.display.update()
+
+                break
+            else:
+                renderedText = font.render(line[i],1,color)
+                screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
+                pygame.display.update()
+                clock.tick(text_speed)
 
         y_offset += font_height
         top = y + y_offset
