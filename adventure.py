@@ -35,21 +35,21 @@ def renderText(surface,font,message,color,position):
     surface.blit(text,textRect)
 
 # Function that renders a button
-def button(msg,x,y,w,h,ic,ac):
+def button(msg,x,y,w,h,ic,ac,font):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
 
     if x < mouse[0] < x + w and y < mouse[1] < y + h:
         # If the cursor hovers over the button, it is made active by appropriately changing its colors
         pygame.draw.rect(window,ac,(x,y,w,h))
-        renderText(window,primary_font,msg,ic,(x + (w / 2),y + (h / 2)))
+        renderText(window,font,msg,ic,(x + (w / 2),y + (h / 2)))
 
         if click[0]:
             # If the button is clicked
             return True
     else:
         pygame.draw.rect(window,ic,(x,y,w,h))
-        renderText(window,primary_font,msg,ac,(x + (w / 2),y + (h / 2)))
+        renderText(window,font,msg,ac,(x + (w / 2),y + (h / 2)))
 
     return False
 
@@ -146,9 +146,9 @@ def confirmName():
         text = "Is your name \'" + player_name + "\'?"
         renderText(window,primary_font,text,Colors["white"],(window_width / 2,window_height / 2 - 60))
 
-        option1 = button("[Y]es",window_width / 2 - 225,window_height / 2,150,80,Colors["black"],Colors["white"])
+        option1 = button("[Y]es",window_width / 2 - 225,window_height / 2,150,80,Colors["black"],Colors["white"],primary_font)
 
-        option2 = button("[N]o",window_width / 2 + 100,window_height / 2,150,80,Colors["black"],Colors["white"])
+        option2 = button("[N]o",window_width / 2 + 100,window_height / 2,150,80,Colors["black"],Colors["white"],primary_font)
 
         pygame.display.update()
 
@@ -202,24 +202,28 @@ verse1 = {
     "lines": [
         {
             "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure.",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
             "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
             "text": "Simply adding a third sentence for testing.",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
             "text": "Testing out the italics and a different text speed to see if there is some change.",
+            "option": False,
             "font": special_font_italics,
             "text_speed": 75,
             "EOP": True
@@ -233,18 +237,21 @@ verse2 = {
     "lines": [
         {
             "text": "This is the beginning of a new verse, which erases everything in the previous verse and renders the new text on a new screen.",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
             "text": "Another line to see if everything works the way it does for the first verse.",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
             "text": "Checking if we can add the player's name (" + player_name + ") seamlessly to the narrative.",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
@@ -252,9 +259,39 @@ verse2 = {
     ]
 }
 
-verses = [verse1,verse2]
+verse3 = {
+    "bg-color": Colors["violet"],
+    "font-color": Colors["yellow"],
+    "lines": [
+        {
+            "text": "Testing various options and seeing that they fit seamlessly with the rest of the narrative.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Kill the rebels",
+            "option": True,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Spare the rebels",
+            "option": True,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        }
+    ]
+}
+
+verses = [verse1,verse2,verse3]
 
 first_time = True
+options = False
+option_list = []
 current_page = 0
 current_verse = verses[0]
 
@@ -270,7 +307,7 @@ while True:
                 sys.exit()
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_RETURN] and not first_time:
+    if keys[pygame.K_RETURN] and not first_time and not options:
         # Begins the next verse by clearing out everything on the screen
         first_time = True
         if current_page + 1 < len(verses):
@@ -280,22 +317,32 @@ while True:
             # If the end of the story is reached
             break
 
+    if options:
+        new_y = starting_y
+        for option in option_list:
+            button(option["text"],100,new_y,250,50,current_verse["bg-color"],current_verse["font-color"],option["font"])
+            new_y += 100
+
     if first_time:
         window.fill(current_verse["bg-color"])
 
         starting_y = 50
 
         for line in current_verse["lines"]:
-            top = wrapText(window,line["text"],line["font"],current_verse["font-color"],50,starting_y,700,line["text_speed"])
+            if not line["option"]:
+                top = wrapText(window,line["text"],line["font"],current_verse["font-color"],50,starting_y,700,line["text_speed"])
 
-            if line["EOP"]:
-                # Adding a gap between two paragraphs for easier differentiation
-                starting_y = top + 50
+                if line["EOP"]:
+                    # Adding a gap between two paragraphs for easier differentiation
+                    starting_y = top + 50
+                else:
+                    starting_y = top
             else:
-                starting_y = top
+                options = True
+                option_list.append(line)
 
         first_time = False
-    else:
+    elif not options:
         text = secondary_font.render("Press \'Enter\' to continue",1,current_verse["font-color"])
         window.blit(text,(window_width / 2 + 100,window_height - 50))
 
