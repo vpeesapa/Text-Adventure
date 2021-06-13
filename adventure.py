@@ -82,6 +82,9 @@ def enterName():
                         player_name = player_name[:-1]
                     elif len(player_name) < character_limit and event.key != pygame.K_RETURN:
                         player_name += event.unicode
+                        
+                        # Capitalizes the first letter of the player's name
+                        player_name = player_name.capitalize()
 
         # --Game logic goes here--
         if not is_typing:
@@ -198,8 +201,8 @@ def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
 
             if key_press:
                 # Renders the whole line if a key is pressed to speed up the process
-                renderedText = font.render(line,1,color)
-                screen.blit(renderedText,(x,top))
+                renderedText = font.render(line[i:],1,color)
+                screen.blit(renderedText,(x + (font.size(line[:i])[0]),top))
                 pygame.display.update()
 
                 break
