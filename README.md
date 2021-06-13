@@ -8,7 +8,7 @@ Varun Peesapati
 * The typewriter effect works as intended for the text that's part of the narrative.
 * Sentences that exceed the maximum width of the screen are now wrapped.
 * The text speed of the typewriter effect can now be changed depending on the context of the line (to give more weight to the narrative context).
-* The narrative seamlessly transitions from one page to another without any hiccups (still need to figure out a way to incorporate options into the fray).
+* The narrative seamlessly transitions from one page to another without any hiccups (including ones with options in them as well).
 
 ## Ideas yet to be implemented
 * ~~Wrapping of long sentences that exceed the width of the screen.~~
