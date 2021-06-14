@@ -10,6 +10,7 @@ Varun Peesapati
 * The text speed of the typewriter effect can now be changed depending on the context of the line (to give more weight to the narrative context).
 * The narrative seamlessly transitions from one page to another without any hiccups (including ones with options in them as well).
 * The line would forgo the typewriter effect when any key (except `ESCAPE`) is pressed to speed up the process.
+* Choosing different options would now alter the narrative.
 
 ## Ideas yet to be implemented
 * ~~Wrapping of long sentences that exceed the width of the screen.~~
