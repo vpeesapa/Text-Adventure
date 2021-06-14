@@ -82,7 +82,7 @@ def enterName():
                         player_name = player_name[:-1]
                     elif len(player_name) < character_limit and event.key != pygame.K_RETURN:
                         player_name += event.unicode
-                        
+
                         # Capitalizes the first letter of the player's name
                         player_name = player_name.capitalize()
 
@@ -217,6 +217,29 @@ def wrapText(screen,text,font,color,x,y,allowed_width,text_speed):
 
     return top
 
+# Function that changes the narrative depending on the choices made by the player
+def branchNarrative():
+
+    if len(selected_options) > 0:
+        if selected_options[0] >= 0:
+
+            if selected_options[0] == 0:
+                verse4["lines"][0]["text"] = player_name + " proceeded to kill the rebels with his crimson blade."
+            else:
+                verse4["lines"][0]["text"] = player_name + " dropped his crimson blade, much to the surprise of his enemy."
+
+        if len(selected_options) >= 2 and selected_options[1] >= 0:
+            if selected_options[1] == 0:
+                verse6["lines"][1]["text"] = player_name + " pressed option A... what an idiot!"
+            else:
+                verse6["lines"][1]["text"] = player_name + " pressed option B hoping to see a difference in narrative. So gullible, hahahahahahaha!"
+
+
+        return True
+
+    return False
+
+
 enterName()
 
 # The lines that will be displayed
@@ -311,15 +334,103 @@ verse3 = {
     ]
 }
 
-verses = [verse1,verse2,verse3]
+verse4 = {
+    "bg-color": Colors["white"],
+    "font-color": Colors["black"],
+    "lines": [
+        {
+            "text": "",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "All of a sudden, the ground beneath his feet started rumbling.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "Cracks began to appear before it began collapsing.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        }
+    ]
+}
+
+verse5 = {
+    "bg-color": Colors["white"],
+    "font-color": Colors["black"],
+    "lines": [
+        {
+            "text": "Oh no, another stupid, pointless choice appeared!",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Option A",
+            "option": True,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Option B",
+            "option": True,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        }
+    ]
+}
+
+verse6 = {
+    "bg-color": Colors["white"],
+    "font-color": Colors["black"],
+    "lines": [
+        {
+            "text": "Boo yah, asshole!",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Oh, you're approaching me! Instead of running away, you're coming towards me.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        }
+    ]
+}
+
+verses = [verse1,verse2,verse3,verse4,verse5,verse6]
 
 first_time = True
 options = False
 option_list = []
+selected_options = []
 current_page = 0
 current_verse = verses[0]
 
 while True:
+    current_options = []
+    is_branch = False
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             # If the user voluntarily closes the window
@@ -344,8 +455,24 @@ while True:
     if options:
         new_y = starting_y
         for option in option_list:
-            button(option["text"],100,new_y,250,50,current_verse["bg-color"],current_verse["font-color"],option["font"])
+            current_options.append(button(option["text"],100,new_y,250,50,current_verse["bg-color"],current_verse["font-color"],option["font"]))
             new_y += 100
+
+    for j in range(len(current_options)):
+        if current_options[j]:
+            selected_options.append(j)
+            is_branch = branchNarrative()
+
+    if is_branch:
+        options = False
+        first_time = True
+        option_list.clear()
+        if current_page + 1 < len(verses):
+            current_page += 1
+            current_verse = verses[current_page]
+        else:
+            # If the end of the story is reached
+            break
 
     if first_time:
         window.fill(current_verse["bg-color"])
