@@ -17,112 +17,126 @@ verse1 = {
     "font-color": Colors["white"],
     "lines": [
         {
-            "text": "This is a story from a long, long time ago... idk what to write here, my vocabulary is very limited, i'm sorry for being a failure.",
+            "text": "A wild snowstorm brewed in the frigid Rand Mountains.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
-            "text": "A time where nothing and everything existed at the same time. Making this a longer sentence for testing and if this passes, I can sleep peacefully. Ok, not peacefully, but I'll be able to sleep off for a while (maybe).",
-            "option": False,
-            "font": secondary_font,
-            "text_speed": 25,
-            "EOP": True
-        },
-        {
-            "text": "Simply adding a third sentence for testing.",
+            "text": "The viciously cold and dark evening was accompanied by howling winds which sounded like the wailing of the spirits of the dead.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
-            "text": "Testing out the italics and a different text speed to see if there is some change.",
+            "text": "The winds drowned out all the other noises and visibility was atrocious, making the already terrible landscape inaccessible for the few that dared to go near it.",
             "option": False,
-            "font": special_font_italics,
-            "text_speed": 75,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "The evergreen, coniferous trees which canopied the gradients were draped in a thick blanket of snow, covering the lush greenery underneath never-melting ice.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
             "EOP": True
+        },
+        {
+            "text": "Amidst the increasing intensity of the storm, the sound of multiple motors revved loudly, each making their distinctive sounds.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "They were then closely followed by the restless rustling of trees and its branches.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
         }
     ]
 }
 
 verse2 = {
-    "bg-color": Colors["white"],
-    "font-color": Colors["black"],
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
     "lines": [
         {
-            "text": "This is the beginning of a new verse, which erases everything in the previous verse and renders the new text on a new screen.",
+            "text": "As the noises echoed throughout the mountain ranges, four snowmobiles burst out of the forested area, leaving behind neat, straight trails of snow parted by its tracks.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "Three in the front followed by the remaining one that was vehemently pursuing the other three.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
-            "text": "Another line to see if everything works the way it does for the first verse.",
+            "text": "The three motorboats that were in front continuously rocked left and right in an effort to confuse and get rid of its pursuer.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
-            "text": "Checking if we can add the player's name (" + player_name + ") seamlessly to the narrative.",
+            "text": "But... it was all for a lost cause.",
             "option": False,
             "font": secondary_font,
-            "text_speed": 25,
+            "text_speed": 5,
             "EOP": True
         }
     ]
 }
 
 verse3 = {
-    "bg-color": Colors["violet"],
-    "font-color": Colors["yellow"],
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
     "lines": [
         {
-            "text": "Testing various options and seeing that they fit seamlessly with the rest of the narrative.",
-            "option": False,
-            "font": secondary_font,
-            "text_speed": 25,
-            "EOP": True
-        },
-        {
-            "text": "Kill the rebels",
-            "option": True,
-            "font": secondary_font,
-            "text_speed": 25,
-            "EOP": True
-        },
-        {
-            "text": "Spare the rebels",
-            "option": True,
-            "font": secondary_font,
-            "text_speed": 25,
-            "EOP": True
-        }
-    ]
-}
-
-verse4 = {
-    "bg-color": Colors["white"],
-    "font-color": Colors["black"],
-    "lines": [
-        {
-            "text": "",
-            "option": False,
-            "font": secondary_font,
-            "text_speed": 25,
-            "EOP": True
-        },
-        {
-            "text": "All of a sudden, the ground beneath his feet started rumbling.",
+            "text": "Without wasting much time, the pursuing rider quickly managed to catch up to one of them who was lagging behind his companions by a few inches.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": False
         },
         {
-            "text": "Cracks began to appear before it began collapsing.",
+            "text": "Realizing that he could not shake his pursuer off any longer, the pursued rider slowed himself down to surprise his enemy with a gun that was hidden underneath his jacket.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "But, before he could react, the pursuing rider quickly unsheated his sword and swiftly decapacitated his enemy.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 120,
+            "EOP": True
+        }
+    ]
+}
+
+verse4 = {
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
+    "lines": [
+        {
+            "text": "The man's head oozed a copious amount of blood which stained the white blanket of snow as it slid off the body.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "The body which was still firmly holding onto the snowmobile slowly began to lean to its right, causing the vehicle to lose balance and violently sway back and forth before crashing into a nearby rock and exploding in flames, made only bigger by the oil leaking from it.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
@@ -132,26 +146,47 @@ verse4 = {
 }
 
 verse5 = {
-    "bg-color": Colors["white"],
-    "font-color": Colors["black"],
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
     "lines": [
         {
-            "text": "Oh no, another stupid, pointless choice appeared!",
+            "text": "The smell of oil lingered in the air as the other two riders desperately accelerated down the slope, hoping to quickly escape from the clutches of their pursuer.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "They immediately understood that they were the prey and the man chasing them was their predator. Their only means of escape was to outspeed the man before their heads are lopped off as well.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
-            "text": "Option A",
-            "option": True,
+            "text": "All they had to do was go faster...",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "And faster...",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 45,
+            "EOP": False
+        },
+        {
+            "text": "And faster.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 65,
             "EOP": True
         },
         {
-            "text": "Option B",
-            "option": True,
+            "text": "But... was it really that easy?",
+            "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
