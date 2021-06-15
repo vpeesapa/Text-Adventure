@@ -80,7 +80,7 @@ verse2 = {
             "EOP": True
         },
         {
-            "text": "The three motorboats that were in front continuously rocked left and right in an effort to confuse and get rid of its pursuer.",
+            "text": "The three snowmobiles that were in front continuously rocked left and right in an effort to confuse and get rid of its pursuer.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
@@ -188,7 +188,7 @@ verse5 = {
             "text": "But... was it really that easy?",
             "option": False,
             "font": secondary_font,
-            "text_speed": 25,
+            "text_speed": 5,
             "EOP": True
         }
     ]
