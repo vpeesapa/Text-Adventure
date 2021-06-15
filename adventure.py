@@ -245,6 +245,7 @@ enterName()
 
 first_time = True
 options = False
+next_line = True
 option_list = []
 selected_options = []
 current_page = 0
@@ -304,13 +305,39 @@ while True:
 
         for line in current_verse["lines"]:
             if not line["option"]:
-                top = wrapText(window,line["text"],line["font"],current_verse["font-color"],50,starting_y,700,line["text_speed"])
+                if next_line:
+                    pygame.draw.rect(window,current_verse["bg-color"],(window_width / 2 + 100,window_height - 50,300,50))
+
+                    top = wrapText(window,line["text"],line["font"],current_verse["font-color"],50,starting_y,700,line["text_speed"])
+
+                    if line != current_verse["lines"][len(current_verse["lines"]) - 1]:
+                        next_line = False
+
+                if not next_line:
+                    text = secondary_font.render("Press any key to continue",1,current_verse["font-color"])
+                    window.blit(text,(window_width / 2 + 100,window_height - 50))
+                    pygame.display.update()
 
                 if line["EOP"]:
                     # Adding a gap between two paragraphs for easier differentiation
                     starting_y = top + 50
                 else:
                     starting_y = top + 10
+
+                # Waits for a key press from the player to continue on with the narrative
+                while not next_line:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            # If the user voluntarily closes the window
+                            pygame.quit()
+                            sys.exit()
+                        if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_ESCAPE:
+                                pygame.quit()
+                                sys.exit()
+                            else:
+                                next_line = True
+
             else:
                 options = True
                 option_list.append(line)
