@@ -243,8 +243,6 @@ def branchNarrative():
 
 enterName()
 
-verse2["lines"][2]["text"] = "Checking if we can add the player's name (" + player_name + ") seamlessly to the narrative."
-
 first_time = True
 options = False
 option_list = []
@@ -312,7 +310,7 @@ while True:
                     # Adding a gap between two paragraphs for easier differentiation
                     starting_y = top + 50
                 else:
-                    starting_y = top
+                    starting_y = top + 10
             else:
                 options = True
                 option_list.append(line)
