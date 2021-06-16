@@ -105,14 +105,14 @@ verse3 = {
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
-            "EOP": False
+            "EOP": True
         },
         {
             "text": "Realizing that he could not shake his pursuer off any longer, the pursued rider slowed himself down to surprise his enemy with a gun that was hidden underneath his jacket.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
-            "EOP": False
+            "EOP": True
         },
         {
             "text": "But, before he could react, the pursuing rider quickly unsheated his sword and swiftly decapacitated his enemy.",
@@ -133,7 +133,7 @@ verse4 = {
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
-            "EOP": False
+            "EOP": True
         },
         {
             "text": "The body which was still firmly holding onto the snowmobile slowly began to lean to its right, causing the vehicle to lose balance and violently sway back and forth before crashing into a nearby rock and exploding in flames, made only bigger by the oil leaking from it.",
@@ -195,31 +195,115 @@ verse5 = {
 }
 
 verse6 = {
-    "bg-color": Colors["white"],
-    "font-color": Colors["black"],
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
     "lines": [
         {
-            "text": "Boo yah, asshole!",
+            "text": "Just as they were about to lose their enemy, one of the riders rode off a cliff that had seemingly appeared out of nowhere and plummeted into the deep, dark abyss down below.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
-            "text": "",
+            "text": "Watching his partner plunge to his death, the remaining rider quickly reacted by jumping off of his snowmobile at the last minute.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "As he picked himself up, he watched his ride, which was now out-of-control, follow in his partner's footsteps and dive into the sea of darkness that was waiting below.",
             "option": False,
             "font": secondary_font,
             "text_speed": 25,
             "EOP": True
         },
         {
-            "text": "Oh, you're approaching me! Instead of running away, you're coming towards me.",
+            "text": "His eyes were filled with fear.",
             "option": False,
             "font": secondary_font,
-            "text_speed": 25,
+            "text_speed": 20,
+            "EOP": False
+        },
+        {
+            "text": "His body was overcome by the naturalistic fear of death.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 15,
+            "EOP": False
+        },
+        {
+            "text": "His body remained paralyzed at that spot.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 10,
+            "EOP": False
+        },
+        {
+            "text": "Time around him began to slow down to a crawl. His breathing became heavier with each breath he took. His vision became blurry each time he blinked his eyes.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 5,
+            "EOP": True
+        },
+        {
+            "text": "The man was slowly, but surely, losing his grasp on reality.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 2,
             "EOP": True
         }
     ]
 }
 
-verses = [verse1,verse2,verse3,verse4,verse5,verse6]
+verse7 = {
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
+    "lines": [
+        {
+            "text": "Letting go of the final shred of sanity that he had left, the man burst out in manic laughter.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "The fear of death broke him like a glass jar, forcing him to realize that his end was imminent and fast-approaching.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "While he continued laughing like a maniac, he watched the blurry vision of his pursuer tread slowly through the now knee-deep snow and towards him to deal one final blow.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "As a last resort to protect himself, he lashed out at the man, who was approaching him with his bloodthirsty crimson blade in tow.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "\"You... you... you Imperial kissing asshole! The Rebellion will chase the likes of you to the depths of hell and make sure that you regret crossing our paths!\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 45,
+            "EOP": False
+        },
+        {
+            "text": "\"You may be a legendary warrior, Gladio Anders, but even YOU cannot resist change! NOBODY can resist the change that we're ushering forth.\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 10,
+            "EOP": True
+        }
+    ]
+}
+
+verses = [verse1,verse2,verse3,verse4,verse5,verse6,verse7]
