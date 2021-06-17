@@ -297,7 +297,7 @@ verse7 = {
             "EOP": False
         },
         {
-            "text": "\"You may be a legendary warrior, Gladio Anders, but even YOU cannot resist change! NOBODY can resist the change that we're ushering forth.\"",
+            "text": "\"You may be a legendary warrior, Gladio Anders, but even YOU cannot resist change! NOBODY can resist the change that we're ushering in.\"",
             "option": False,
             "font": secondary_font,
             "text_speed": 10,
@@ -306,4 +306,74 @@ verse7 = {
     ]
 }
 
-verses = [verse1,verse2,verse3,verse4,verse5,verse6,verse7]
+verse8 = {
+    "bg-color": Colors["black"],
+    "font-color": Colors["white"],
+    "lines": [
+        {
+            "text": "Gladio did not bat an eye towards his enemy's taunts.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "His cold, empty black eyes remained transfixed on his enemy's hapless face while he dragged his blade along the snow to deal the final blow.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "\"Wise words coming from rebel scum,\" he replied calmly. \"You might believe that the Rebellion has your back... but they are merely a pebble in our path.\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": True
+        },
+        {
+            "text": "Seeing that there was no other alternative left, the rebel once again tried taunting his fast-approaching enemy.",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "\"You may have earned the people's trust through your exploits against the Monsters, Gladio. But... that's only because they do not know who you really are!\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 25,
+            "EOP": False
+        },
+        {
+            "text": "\"You had mindlessly slaughtered innocents...\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 20,
+            "EOP": False
+        },
+        {
+            "text": "\"You killed hordes of women...\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 15,
+            "EOP": False
+        },
+        {
+            "text": "\"You were even merciless against children...\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 10,
+            "EOP": False
+        },
+        {
+            "text": "\"You are no hero, Gladio... you're a MONSTER, just like the ones you had massacred for all these years.\"",
+            "option": False,
+            "font": secondary_font,
+            "text_speed": 5,
+            "EOP": True
+        }
+    ]
+}
+
+verses = [verse1,verse2,verse3,verse4,verse5,verse6,verse7,verse8]
